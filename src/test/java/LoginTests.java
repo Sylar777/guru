@@ -9,18 +9,18 @@ public class LoginTests extends BaseTest {
     private final TeachPage teachPage;
     private final String correctEmail;
     private final String correctPassword;
-    private final String incorrectPassword;
+    private final String untrustedPassword;
 
     public LoginTests() {
         loginPage = new LoginPage();
         teachPage = new TeachPage();
         correctEmail = System.getenv("EMAIL");
         correctPassword = System.getenv("PASSWORD");
-        incorrectPassword = UUID.randomUUID().toString();
+        untrustedPassword = UUID.randomUUID().toString();
     }
     @Test
     void loginWithInvalidPasswordTest() {
-        loginPage.login(correctEmail, incorrectPassword);
+        loginPage.login(correctEmail, untrustedPassword);
         loginPage.checkLoginError();
     }
     @Test
